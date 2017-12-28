@@ -1,6 +1,6 @@
 import http.client, urllib.request, urllib.parse, urllib.error, base64, requests, time, json
 
-import sys.argv
+import sys
 
 # This is based heaily on the tutorial on https://nordicapis.com/digitize-your-notes-with-microsoft-vision-api/
 
@@ -25,9 +25,6 @@ body = {'url' : sys.argv[1]}
 #If you set the handwriting param to be false, it will OCR the text instead
 params = {'handwriting' : 'true'}
 
-if sys.argv[2] and sys.argv[2] == 'OCR':
-    params = {'handwriting' : 'false'}
-    
 #---Handwriting analysis---
 #try sending the image to the CV API
 try:
@@ -67,7 +64,7 @@ except Exception as e:
     print(e)
 
 # this opens the file for writing
-with open("mynote.txt", "w") as f:
+with open(sys.argv[2], "w") as f:
     for line in lines:
         print(line['text'])
         # write the value to the file
