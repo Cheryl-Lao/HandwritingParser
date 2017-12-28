@@ -19,13 +19,15 @@ headers = {
     'Ocp-Apim-Subscription-Key': api_key,
 }
 
-body = {'url' : 'https://www.gratefulleadership.com/wp-content/uploads/2013/01/Micahel-Case-Thank-You-2-e1359407348712.jpg'}
+body = {'url' : sys.argv[1]}
 #body = {'url':'http://i.imgur.com/W2fF6uC.jpg'}
 
 #If you set the handwriting param to be false, it will OCR the text instead
 params = {'handwriting' : 'true'}
 
-
+if sys.argv[2] and sys.argv[2] == 'OCR':
+    params = {'handwriting' : 'false'}
+    
 #---Handwriting analysis---
 #try sending the image to the CV API
 try:
