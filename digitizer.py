@@ -8,6 +8,7 @@ import sys
 #---Setting up the connection---
 # Keys
 endpoint = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0'
+#Replace this with yur API key!!!
 api_key = 'cf70bc8dedd748edb657e9ad81555a73'
 
 # HTTP request to send to the API
@@ -19,18 +20,18 @@ headers = {
     'Ocp-Apim-Subscription-Key': api_key,
 }
 
+#Gets the first argument as the url of the picture to process
 body = {'url' : sys.argv[1]}
-#body = {'url':'http://i.imgur.com/W2fF6uC.jpg'}
 
 #If you set the handwriting param to be false, it will OCR the text instead
 params = {'handwriting' : 'true'}
 
 #---Handwriting analysis---
-#try sending the image to the CV API
+#Try sending the image to the CV API
 try:
     response = requests.request('POST', endpoint + '/RecognizeText', json=body, data=None, headers=headers, params=params)
 
-    #error checking
+    #202 is the success status code
     if response.status_code != 202:
         # Display JSON data and exit if the REST API call was not successful.
         parsed = json.loads(response.text)
@@ -41,7 +42,7 @@ try:
     # grab the 'Operation-Location' from the response
     operationLocation = response.headers['Operation-Location']
 
-    #It will take a little bit to load
+    #It will take a little bit of time to load so just make the user wait
     print('\nHandwritten text submitted. Waiting 10 seconds to retrieve the recognized text.\n')
     time.sleep(10)
 
@@ -59,11 +60,12 @@ try:
     for line in lines:
         print (line['text'])
 
+#Catch any exceptions that might happen
 except Exception as e:
     print('Error:')
     print(e)
 
-# this opens the file for writing
+# This opens the file specified by the second argument for writing
 with open(sys.argv[2], "w") as f:
     for line in lines:
         print(line['text'])
