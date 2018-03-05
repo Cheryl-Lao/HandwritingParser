@@ -8,7 +8,8 @@ import sys
 #---Setting up the connection---
 # Keys
 endpoint = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0'
-#Replace this with yur API key!!!
+
+#Replace this with your API key!!!
 api_key = 'cf70bc8dedd748edb657e9ad81555a73'
 
 # HTTP request to send to the API
@@ -23,7 +24,7 @@ headers = {
 #Gets the first argument as the url of the picture to process
 body = {'url' : sys.argv[1]}
 
-#If you set the handwriting param to be false, it will OCR the text instead
+#If you set the handwriting param to be false, it will use OCR on the text instead (NOT good for handwritten text). 
 params = {'handwriting' : 'true'}
 
 #---Handwriting analysis---
