@@ -48,7 +48,7 @@ try:
     time.sleep(10)
 
 
-    # Execute the second REST API call and get the response.
+    # GET the response.
     response = requests.request('GET', operationLocation, json=None, data=None, headers=headers, params=None)
 
     # 'data' contains the JSON data. The following formats the JSON data for display.

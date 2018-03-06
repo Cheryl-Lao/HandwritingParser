@@ -41,7 +41,7 @@ try:
     #It will take a little bit of time to load so just make the user wait
 
 
-    # Execute the second API call and get the response.
+    # GET the response.
     response = requests.request()
 
     # 'data' contains the JSON data. The following formats the JSON data for display.
