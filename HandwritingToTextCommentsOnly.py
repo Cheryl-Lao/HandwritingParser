@@ -3,8 +3,11 @@ import http.client, urllib.request, urllib.parse, urllib.error, base64, requests
 import sys
 
 # This is based heaily on the tutorial on https://nordicapis.com/digitize-your-notes-with-microsoft-vision-api/
+# Code by Cheryl Lao
 
 #####Comment Version#####
+##This will not work unless you fill in the blanks!!!##
+
 #---Setting up the connection---
 # Keys
 endpoint = 
@@ -51,13 +54,14 @@ try:
     lines = parsed['recognitionResult']['lines']
 
     #parsed['recognitionResult']['lines'] contains an array of all the lines of processed text. We can print those out now:
-
+	# This opens the file specified by the second argument for writing
+	with open(sys.argv[2], "w") as f:
+		for line in lines:
+			# write the value to the file
+			
 #Catch any exceptions that might happen
 except Exception as e:
 
 
-# This opens the file specified by the second argument for writing
-with open(sys.argv[2], "w") as f:
-    for line in lines:
-        # write the value to the file
+
         
