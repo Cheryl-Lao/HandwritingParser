@@ -60,15 +60,17 @@ try:
     #parsed['recognitionResult']['lines'] contains an array of all the lines of processed text. We can print those out now:
     for line in lines:
         print (line['text'])
-
+        
+    # This opens the file specified by the second argument for writing
+    with open(sys.argv[2], "w") as f:
+        for line in lines:
+            print(line['text'])
+            # write the value to the file
+            f.write(line['text'])
+        
 #Catch any exceptions that might happen
 except Exception as e:
     print('Error:')
     print(e)
 
-# This opens the file specified by the second argument for writing
-with open(sys.argv[2], "w") as f:
-    for line in lines:
-        print(line['text'])
-        # write the value to the file
-        f.write(line['text'])
+
